@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Todo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="board">
+    <header class="board-head">
+      <h1>Daily Todo</h1>
+      <p class="subtitle">하루 단위로 할 일을 정리해요</p>
+    </header>
+
+    <section class="week-nav">
+      <button id="prevWeek" class="nav-arrow" aria-label="이전 주">‹</button>
+      <span id="weekLabel" class="week-label"></span>
+      <button id="nextWeek" class="nav-arrow" aria-label="다음 주">›</button>
+    </section>
+
+    <ul id="weekStrip" class="week-strip"></ul>
+
+    <section class="day-nav">
+      <button id="prevDay" class="nav-arrow" aria-label="이전 날짜">‹</button>
+      <span id="selectedLabel" class="day-label"></span>
+      <button id="nextDay" class="nav-arrow" aria-label="다음 날짜">›</button>
+    </section>
+
+    <section class="composer">
+      <input id="taskInput" type="text" placeholder="할 일을 입력하세요" maxlength="80" />
+      <button id="addBtn">추가</button>
+    </section>
+    <p id="warning" class="warning" role="alert"></p>
+
+    <nav class="filters">
+      <button class="filter active" data-filter="all">전체</button>
+      <button class="filter" data-filter="active">진행 중</button>
+      <button class="filter" data-filter="done">완료</button>
+    </nav>
+
+    <ul id="taskList" class="task-list"></ul>
+    <p id="emptyState" class="empty" hidden>이 날에는 할 일이 없어요.</p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
