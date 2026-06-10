@@ -8,27 +8,15 @@ import TodoList from "./components/TodoList";
 
 const STORAGE_KEY = "kakao-daily-todo";
 
-// JS object literal은 Pydantic처럼 스키마 검증이 없어서,
-// localStorage에서 불러온 값이 내가 기대한 모양이라는 보장이 없어요.
-// 그래서 최소한의 모양 검사로 이상한 데이터는 걸러내요.
-function isValidTask(task) {
-  return (
-    task &&
-    typeof task.id === "number" &&
-    typeof task.title === "string" &&
-    typeof task.done === "boolean" &&
-    typeof task.date === "string"
-  );
-}
-
 // 함수형 초기화로 딱 한 번만 localStorage를 읽어요.
 // (그냥 useState(JSON.parse(...))로 쓰면 리렌더링마다 파싱이 또 돌아요)
+// JSON이 깨졌을 때만 try/catch로 막고, 값 모양은 배열/숫자 정도만 가볍게 확인해요.
 function loadState() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (!saved) return { tasks: [], weekOffset: 0 };
     const parsed = JSON.parse(saved);
-    const tasks = Array.isArray(parsed.tasks) ? parsed.tasks.filter(isValidTask) : [];
+    const tasks = Array.isArray(parsed.tasks) ? parsed.tasks : [];
     const weekOffset = Number.isInteger(parsed.weekOffset) ? parsed.weekOffset : 0;
     return { tasks, weekOffset };
   } catch {
