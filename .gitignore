@@ -1,0 +1,25 @@
+# 의존성
+node_modules/
+**/node_modules/
+
+# Next.js 빌드 산출물
+.next/
+**/.next/
+
+# 파이썬 가상환경 / 캐시
+.venv/
+**/__pycache__/
+*.pyc
+
+# 환경변수 (환경마다 달라지는 값)
+.env.local
+**/.env.local
+
+# SQLite DB
+*.db
+
+# macOS
+.DS_Store
+
+# 개인 작업 노트 (제출 정리는 GitHub 이슈로, 이 문서는 개인용)
+docs/개발-방법론.md
